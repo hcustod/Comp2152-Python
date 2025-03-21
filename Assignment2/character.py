@@ -10,9 +10,11 @@ class Character:
         self._health_points = main.big_dice_options()
 
     @property
-    def combat_strength(self):
+    def get_combat_strength(self):
         return self._combat_strength
 
+    # TODO: Why can I not add set to the start of this?
+    # Use of set_ in decorator name leads to errors (?), cannot resolve name and suggests self.set
     @combat_strength.setter
     def combat_strength(self, value):
         if not 1 <= value <= 6:
@@ -21,7 +23,7 @@ class Character:
             self._combat_strength = value
 
     @property
-    def health_points(self):
+    def get_health_points(self):
         return self._health_points
 
     @health_points.setter

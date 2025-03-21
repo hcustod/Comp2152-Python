@@ -3,6 +3,10 @@ import functions
 from hero import Hero
 from monster import Monster
 
+# All player references have been renamed to Hero given assignment 2 instructions.
+# User input in hero strength/health and monster strength/health has been removed,
+#       given assignment requirements of rolling for hero/monster strength/health.
+
 hero = Hero()
 monster = Monster()
 
@@ -22,7 +26,7 @@ monster_powers = {
     "Super Hearing": 6
 }
 
-# Define the number of stars to award the player
+# Define the number of stars to award the Hero
 num_stars = 0
 
 # Lazy way to avoid check created during lab
@@ -76,7 +80,7 @@ if not input_invalid:
     if weapons[weapon_roll - 1] != "Fist":
         print("    |    --- Thank goodness you didn't roll the Fist...")
 
-    # Roll for player health points
+    # Roll for hero health points
     print("    |", end="    ")
     input("Roll the dice for your health points (Press enter)")
     print(f"    |    Hero rolled {hero.health_points} health points")
@@ -84,7 +88,7 @@ if not input_invalid:
     # Roll for monster health points
     print("    |", end="    ")
     input("Roll the dice for the monster's health points (Press enter)")
-    print(f"    |    Player rolled {monster.health_points} health points for the monster")
+    print(f"    |    Monster rolled {monster.health_points} health points for the monster")
 
     # Collect Loot
     print("    ------------------------------------------------------------------")
@@ -112,11 +116,11 @@ if not input_invalid:
     print("    ------------------------------------------------------------------")
     print("    |", end="    ")
     input("Analyze the roll (Press enter)")
-    # Compare Player vs Monster's strength
+    # Compare Hero vs Monster's strength
     print("    |    --- You are matched in strength: " + str(hero.combat_strength == monster.combat_strength))
 
-    # Check the Player's overall strength and health
-    print("    |    --- You have a strong player: " + str((hero.combat_strength + health_points) >= 15))
+    # Check the Hero's overall strength and health
+    print("    |    --- You have a strong Hero: " + str((hero.combat_strength + health_points) >= 15))
 
     # Roll for the monster's power
     print("    |", end="    ")
@@ -161,7 +165,7 @@ if not input_invalid:
 
             # Removed redunant check here
             # TODO; redundant? Appears so
-            health_points -= 1
+            hero.health_points -= 1
             crazy_level = functions.inception_dream(num_dream_lvls)
             monster.combat_strength += crazy_level
             print("combat strength: " + str(hero.combat_strength))
@@ -170,7 +174,7 @@ if not input_invalid:
 
 
     # Fight Sequence
-    # Loop while the monster and the player are alive. Call fight sequence functions
+    # Loop while the monster and the hero are alive. Call fight sequence functions
     print("    ------------------------------------------------------------------")
     print("    |    You meet the monster. FIGHT!!")
     while hero.health_points > 0 and monster.health_points > 0:
