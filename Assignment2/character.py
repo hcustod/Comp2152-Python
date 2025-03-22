@@ -10,7 +10,7 @@ class Character:
         self._health_points = main.big_dice_options()
 
     @property
-    def get_combat_strength(self):
+    def combat_strength(self):
         return self._combat_strength
 
     # TODO: Why can I not add set to the start of this?
@@ -23,7 +23,7 @@ class Character:
             self._combat_strength = value
 
     @property
-    def get_health_points(self):
+    def health_points(self):
         return self._health_points
 
     @health_points.setter

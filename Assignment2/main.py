@@ -1,11 +1,20 @@
 import random
 import functions
+import os
+import platform
 from hero import Hero
 from monster import Monster
 
 # All player references have been renamed to Hero given assignment 2 instructions.
 # User input in hero strength/health and monster strength/health has been removed,
 #       given assignment requirements of rolling for hero/monster strength/health.
+
+# Assignment 2 - #9.
+# Start by printing OS info - and additional platform info (useful and neat)
+print(f"Operating System Info: {os.name}")
+print(f"Platform Info: {platform.system()}")
+# Assignment 2 - #10.
+print(f"Python Version: {platform.python_version()}")
 
 hero = Hero()
 monster = Monster()
@@ -151,27 +160,29 @@ if not input_invalid:
 
     # Lab Week 06 - Question 6
     num_dream_lvls = -1 # Initialize the number of dream levels
+
     while (num_dream_lvls < 0 or num_dream_lvls > 3):
-        # Call Recursive function
-        print("    |", end="    ")
-        num_dream_lvls = input("How many dream levels do you want to go down? (Enter a number 0-3)")
-        # If the value entered was not an integer, set the number of dream levels to -1 and loop again 
-        if ((num_dream_lvls == "")):
+        try:
+            print("    |", end="    ")
+            user_input = input("How many dream levels do you want to go down? (Enter a number 0-3)")
+            num_dream_lvls = int(user_input)
+
+            if num_dream_lvls in range(0, 3):
+                hero.health_points -= 1
+                crazy_level = functions.inception_dream(num_dream_lvls)
+                monster.combat_strength += crazy_level
+                print("combat strength: " + str(hero.combat_strength))
+                print("health points: " + str(hero.health_points))
+                print("num_dream_lvls: ", num_dream_lvls)
+            #   If the value entered was not an integer, set the number of dream levels to -1 and loop again
+            else:
+                print("Number entered must be a whole number between 0-3 inclusive, try again")
+                num_dream_lvls = -1
+        except ValueError:
+            print("Invalid input (ValueError)! Please enter a whole number between 0 and 3.")
             num_dream_lvls = -1
-            print("Number entered must be a whole number between 0-3 inclusive, try again")
-    
-        else:
-            num_dream_lvls = int(num_dream_lvls)
 
-            # Removed redunant check here
-            # TODO; redundant? Appears so
-            hero.health_points -= 1
-            crazy_level = functions.inception_dream(num_dream_lvls)
-            monster.combat_strength += crazy_level
-            print("combat strength: " + str(hero.combat_strength))
-            print("health points: " + str(hero.health_points))
-        print("num_dream_lvls: ", num_dream_lvls)
-
+    # Removed redundant check here
 
     # Fight Sequence
     # Loop while the monster and the hero are alive. Call fight sequence functions
