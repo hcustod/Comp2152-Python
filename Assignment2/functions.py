@@ -4,7 +4,6 @@ import random
 # Will the line below print when you import function.py into main.py?
 # print("Inside function.py")
 
-
 def use_loot(belt, health_points):
     good_loot_options = ["Health Potion", "Leather Boots"]
     bad_loot_options = ["Poison Potion"]
@@ -136,10 +135,26 @@ def inception_dream(num_dream_lvls):
 
 
 # Lab 06 - Question 3 and 4
+# Assignment 2 - #11
 def save_game(winner, hero_name="", num_stars=0):
+
+    total_monster_killed = 0
+
+    # First open and loop through file to calculate total monsters killed
+    # If file is not found (no save) pass and continue
+    try:
+        with open("save.txt", "r") as file:
+            for line in file:
+                if "has killed a monster" in line:
+                    total_monster_killed += 1
+    except FileNotFoundError:
+        pass
+
     with open("save.txt", "a") as file:
         if winner == "Hero":
+            total_monster_killed += 1
             file.write(f"Hero {hero_name} has killed a monster and gained {num_stars} stars.\n")
+            file.write(f"Total monster killed = {total_monster_killed}\n")
         elif winner == "Monster":
             file.write("Monster has killed the hero previously\n")
 
@@ -149,10 +164,16 @@ def load_game():
         with open("save.txt", "r") as file:
             print("    |    Loading from saved file ...")
             lines = file.readlines()
+
+            # Displays total kill count
+            for l in reversed(lines):
+                if "Total monster killed" in l:
+                    print("   |   " + l.strip())
+                    break
+
             if lines:
-                last_line = lines[-1].strip()
-                print(last_line)
-                return last_line
+                print("   |   " + lines[-1].strip())
+                return lines[-1]
     except FileNotFoundError:
         print("No previous game found. Starting fresh.")
         return None
