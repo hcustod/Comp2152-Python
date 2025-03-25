@@ -6,8 +6,8 @@ from hero import Hero
 from monster import Monster
 
 # All player references have been renamed to Hero given assignment 2 instructions.
-# User input in hero strength/health and monster strength/health has been removed,
-#       given assignment requirements of rolling for hero/monster strength/health.
+# User input in hero strength and monster strength has been removed,
+#  given assignment requirements of rolling for hero/monster strength/health.
 
 # Assignment 2 - #9.
 # Start by printing OS info - and additional platform info (useful and neat)
