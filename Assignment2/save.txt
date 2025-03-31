@@ -1,0 +1,2 @@
+Hero RiM has killed a monster and gained 3 stars.
+Total monster killed = 1
